@@ -11,7 +11,7 @@ class Simon
 
   def play
 
-    until @game_over
+    until self.game_over
       take_turn
       system("clear")
     end
@@ -24,16 +24,16 @@ class Simon
     show_sequence
     require_sequence
 
-    unless @game_over
+    unless self.game_over
       round_success_message
       sleep(2)
-      @sequence_length += 1
+      self.sequence_length += 1
     end
   end
 
   def show_sequence
     add_random_color
-    @seq.each do |color|
+    self.seq.each do |color|
       puts color
       sleep(1)
       system("clear")
@@ -44,17 +44,17 @@ class Simon
   def require_sequence
     puts "Input the colors in the sequence and
     hit enter between each color selection."
-    @seq.each do |color|
+    self.seq.each do |color|
       input = gets.chomp
       if color != input
-        @game_over = true
+        self.game_over = true
         break
       end
     end
   end
 
   def add_random_color
-    @seq << COLORS.sample
+    self.seq << COLORS.sample
   end
 
   def round_success_message
@@ -66,9 +66,9 @@ class Simon
   end
 
   def reset_game
-    @sequence_length = 1
-    @game_over = false
-    @seq = []
+    self.sequence_length = 1
+    self.game_over = false
+    self.seq = []
   end
 end
 
