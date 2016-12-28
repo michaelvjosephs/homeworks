@@ -24,7 +24,7 @@ class Simon
     show_sequence
     require_sequence
     round_success_message
-    sequence_length += 1
+    self.sequence_length += 1
   end
 
   def show_sequence
@@ -38,8 +38,6 @@ class Simon
   def add_random_color
     seq << COLORS.sample
     # maybe add 1 to sequence length
-
-
   end
 
   def round_success_message
@@ -51,6 +49,8 @@ class Simon
   end
 
   def reset_game
-
+    self.sequence_length = 1
+    self.game_over = false
+    self.seq = []
   end
 end
