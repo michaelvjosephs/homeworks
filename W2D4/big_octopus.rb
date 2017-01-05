@@ -19,19 +19,38 @@ end
 # p sluggish_octopus(a)
 
 def dominant_octopus(arr)
-  quick_sort(arr).last
+  merge_sort(arr).last
 end
 
-def quick_sort(arr)
-  return arr if arr.length <= 1
+def merge_sort(arr)
 
-  pivot = arr.first
-  left = arr[1..-1].select { |el| el.length < pivot.length }
-  right = arr[1..-1].select { |el| el.length >= pivot.length }
+  return arr if arr.count <= 1
 
-  quick_sort(left) + [pivot] + quick_sort(right)
+  mid = arr.count / 2
+  left_sorted = merge_sort(arr.take(mid))
+  right_sorted = merge_sort(arr.drop(mid))
+
+  merge(left_sorted, right_sorted)
+
 end
 
+def merge(left, right)
+  merged = []
+
+  until left.empty? || right.empty?
+    case left.first.length <=> right.first.length
+    when -1
+      merged << left.shift
+    else
+      merged << right.shift
+    end
+  end
+
+  merged + left + right
+
+end
+
+# p merge_sort(a)
 # p dominant_octopus(a)
 
 def clever_octopus(arr)
