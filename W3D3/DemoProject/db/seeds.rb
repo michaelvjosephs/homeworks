@@ -9,5 +9,5 @@
 amber_house = House.create(address: "231 W 111th Street")
 dana_house = House.create(address: "2115 Albemarle Road")
 
-amber = Person.create(name: "Amber", house_id: 1)
-dana = Person.create(name: "Dana", house_id: 2)
+amber = Person.create(name: "Amber", house_id: amber_house.id)
+dana = Person.create(name: "Dana", house_id: dana_house.id)
