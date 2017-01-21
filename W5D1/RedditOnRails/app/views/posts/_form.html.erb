@@ -1,0 +1,39 @@
+<% action_url = (action == :new) ? posts_url : post_url(post) %>
+<form action="<%= action_url %>" method="post">
+  <%= auth_token %>
+  <% if action == :edit %>
+    <%= form_patch_action %>
+  <% end %>
+
+<label for="post_title">Title:</label>
+<input id="post_title" type="text" name="post[title]" value="<%= post.title %>">
+
+<br>
+
+<label for="post_url">URL:</label>
+<input id="post_url" type="text" name="post[url]" value="<%= post.url %>">
+
+<br>
+
+<label for="post_content">Content:</label>
+<textarea id="post_content" name="post[content]"><%= post.content %></textarea>
+
+<br>
+
+<% all_subs.each_with_index do |subb, idx| %>
+  <input
+    for="<%= "C#{idx}" %>"
+    type="checkbox"
+    name="post[sub_ids][]"
+    value="<%= subb.id %>"
+    <%= "checked" if post.sub_ids.include?(subb.id) %>
+  >
+  <label for="<%= "C#{idx}" %>"><%= subb.title %></label>
+  <br>
+<% end %>
+
+<br>
+
+<input type="submit" value="submit">
+
+</form>
